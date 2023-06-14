@@ -1,1 +1,16 @@
-//
+/*
+ disappearing messages
+  - disappear after read
+    - 1:1
+    - groups
+
+  - disappear after send
+    - 1:1
+    - groups
+    - note to self
+
+  - linked device
+    - 1:1
+    - groups
+    - note to self
+*/

@@ -9,7 +9,7 @@ import {
   waitForTestIdWithText
 } from './utilities/utils';
 
-let window: Page | undefined;
+let window: Page;
 test.beforeEach(beforeAllClean);
 
 // test.afterEach(async () => {

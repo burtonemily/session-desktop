@@ -5,6 +5,7 @@ import { newUser } from './setup/new_user';
 import { openApp } from './setup/open';
 import { sendMessage } from './utilities/message';
 import {
+  clickOnElement,
   clickOnMatchingText,
   clickOnTestIdWithText,
   hasTextElementBeenDeleted,
@@ -65,3 +66,17 @@ test('Disappearing messages', async () => {
   await clickOnTestIdWithText(windowB, "control-message", `${userA.userName} set the disappearing message timer to 5 seconds`);
   await hasTextElementBeenDeleted(windowB, sentMessage, 5000);
 });
+
+test('Disappear after read', async() => {
+    // Open App
+  // Create User
+  const [windowA, windowB] = await openApp(2);
+  const [userA, userB] = await Promise.all([newUser(windowA, 'Alice'), newUser(windowB, 'Bob')]);
+  // Create Contact
+  await createContact(windowA, windowB, userA, userB);
+
+  await clickOnTestIdWithText(windowA, 'conversation-options-avatar');
+  await clickOnElement(windowA, 'data-testid', 'disappearing-messages');
+  await clickOnElement(windowA, 'data-testid', 'disappearing-after-read-options');
+
+})

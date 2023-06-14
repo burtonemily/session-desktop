@@ -26,6 +26,7 @@ export type DataTestId =
 | 'next-new-conversation-button' 
 | "control-message" 
 | "disappearing-messages-indicator" 
+| "disappearing-after-read-option"
 | "back-button-conversation-options" 
 | "conversation-options-avatar" 
 | "settings-section" 
@@ -73,4 +74,4 @@ export type DataTestId =
 | "new-closed-group-name" 
 | "next-button" 
 | "link-device" 
-| "group-name-input" 
+| "group-name-input"
