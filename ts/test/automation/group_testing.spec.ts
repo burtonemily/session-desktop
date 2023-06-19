@@ -77,8 +77,8 @@ test('Add contact to group', async () => {
     'module-conversation__user__profile-name',
     testGroup.userName
   );
-  await clickOnElement(windowA, 'data-testid', 'conversation-options-avatar');
-  await clickOnElement(windowA, 'data-testid', 'add-user-button');
+  await clickOnElement([windowA, 'data-testid', 'conversation-options-avatar']);
+  await clickOnElement([windowA, 'data-testid', 'add-user-button']);
   // Waiting for animation of right panel to appear
   await sleepFor(1000);
   await clickOnMatchingText(windowA, userD.userName);

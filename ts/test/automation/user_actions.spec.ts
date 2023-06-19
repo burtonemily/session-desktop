@@ -202,5 +202,5 @@ test('Read status', async () => {
   const [windowA, windowB] = await openApp(2);
   const [userA, userB] = await Promise.all([newUser(windowA, 'Alice'), newUser(windowB, 'Bob')]);
   await createContact(windowA, windowB, userA, userB);
-  await clickOnElement(windowA, 'data-testid' , "setting-section")
+  await clickOnElement([windowA, 'data-testid' , "setting-section"])
 });

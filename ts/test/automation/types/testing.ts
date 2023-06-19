@@ -25,8 +25,15 @@ export type DataTestId =
 | 'new-session-conversation' 
 | 'next-new-conversation-button' 
 | "control-message" 
+| 'disappearing-messages'
+| 'add-user-button'
+| "setting-section"
+| 'disappearing-after-read-option'
 | "disappearing-messages-indicator" 
 | "disappearing-after-read-option"
+| 'disappear-time-1-minute-option'
+| 'disappear-time-10-seconds-option'
+| "disappearing-after-send-options"
 | "back-button-conversation-options" 
 | "conversation-options-avatar" 
 | "settings-section" 

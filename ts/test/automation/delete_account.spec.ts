@@ -49,7 +49,7 @@ test('Delete account from swarm', async () => {
   await sleepFor(20000); // just to allow any messages from our swarm to show up
   // Check if message from user B is restored (we don't want it to be)
   await hasElementBeenDeleted(restoringWindow, 'data-testid', 'module-conversation__user__profile-name', 1000);
-  await clickOnElement(restoringWindow, 'data-testid', 'new-conversation-button'); // Expect contacts list to be empty
+  await clickOnElement([restoringWindow, 'data-testid', 'new-conversation-button']); // Expect contacts list to be empty
   await hasElementBeenDeleted(restoringWindow, 'data-testid', 'module-conversation__user__profile-name', 1000);
   
   await forceCloseAllWindows(restoringWindows);
@@ -89,7 +89,7 @@ test('Delete account from device', async () => {
   // Check if message from user B is restored 
   await waitForElement(restoringWindow, 'data-testid', 'module-conversation__user__profile-name', 1000 , userB.userName)
   // Check if contact is available in contacts section 
-  await clickOnElement(restoringWindow, 'data-testid','new-conversation-button');
+  await clickOnElement([restoringWindow, 'data-testid','new-conversation-button']);
   await waitForElement(restoringWindow, "data-testid" ,'module-conversation__user__profile-name', 1000 , userB.userName);
   
   await forceCloseAllWindows(restoringWindows);

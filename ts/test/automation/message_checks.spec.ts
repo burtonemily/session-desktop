@@ -141,7 +141,7 @@ test('Unsend text message', async () => {
   await waitForTextMessage(windowB, unsendMessage);
   await clickOnTestIdWithText(windowA, 'control-message', unsendMessage, true);
   await clickOnMatchingText(windowA, 'Delete for everyone');
-  await clickOnElement(windowA, 'data-testid', 'session-confirm-ok-button');
+  await clickOnElement([windowA, 'data-testid', 'session-confirm-ok-button']);
   await waitForTestIdWithText(windowA, 'session-toast', 'Deleted');
   await sleepFor(1000);
   await waitForMatchingText(windowB, 'This message has been deleted');

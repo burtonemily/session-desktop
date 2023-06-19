@@ -62,7 +62,7 @@ test('Check changed username syncs', async () => {
   // Replace old username with new username
   await typeIntoInput(windowA, 'profile-name-input', newUsername);
   // Press enter to confirm change
-  await clickOnElement(windowA, 'data-testid', 'save-button-profile-update');
+  await clickOnElement([windowA, 'data-testid', 'save-button-profile-update']);
   // Wait for loading animation
   // Check username change in window B
   // Click on profile settings in window B
@@ -147,7 +147,7 @@ test('Check unsent message syncs', async () => {
   await waitForTextMessage(windowC, unsentMessage);
   await clickOnTestIdWithText(windowA, 'control-message', unsentMessage, true);
   await clickOnMatchingText(windowA, 'Delete for everyone');
-  await clickOnElement(windowA, 'data-testid', 'session-confirm-ok-button');
+  await clickOnElement([windowA, 'data-testid', 'session-confirm-ok-button']);
   await waitForTestIdWithText(windowA, 'session-toast', 'Deleted');
   await hasTextElementBeenDeleted(windowA, unsentMessage, 1000);
   await waitForMatchingText(windowC, 'This message has been deleted');

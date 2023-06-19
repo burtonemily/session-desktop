@@ -15,25 +15,25 @@ import {
 test.beforeEach(beforeAllClean);
 
 test('Check group syncs', async () => {
-  const [windowA, windowC, windowD] = await openApp(3);
+  const [windowA, windowB, windowC] = await openApp(3);
   const [userA, userB, userC] = await Promise.all([
     newUser(windowA, 'Alice'),
-    newUser(windowC, 'Bob'),
-    newUser(windowD, 'Chloe'),
+    newUser(windowB, 'Bob'),
+    newUser(windowC, 'Chloe'),
   ]);
-  const [windowB] = await linkedDevice(userA.recoveryPhrase);
+  const [windowD] = await linkedDevice(userA.recoveryPhrase);
 
   const group = await createGroup(
     'Tiny Bubble Gang',
     userA,
     windowA,
     userB,
-    windowC,
+    windowB,
     userC,
-    windowD
+    windowC
   );
-  // Check group conversation is in conversation list
-  await waitForTestIdWithText(windowB, 'module-conversation__user__profile-name', group.userName);
+  // Check group conversation is in conversation list on linked device
+  await waitForTestIdWithText(windowD, 'module-conversation__user__profile-name', group.userName);
 });
 
 test('Check leaving group syncs', async () => {

@@ -57,7 +57,7 @@ export async function waitForTextMessage(window: Page, text: string, maxWait?: n
 }
 
 export async function waitForControlMessageWithText(window: Page, text: string) {
-  return waitForTestIdWithText(window, 'control-message', text);
+  return doesTextIncludeString(window, 'control-message', text);
 }
 
 export async function waitForMatchingText(window: Page, text: string, maxWait?: number) {
@@ -118,12 +118,9 @@ export async function checkPathLight(window: Page, maxWait?: number) {
 
 // ACTIONS
 
-export async function clickOnElement(
-  window: Page,
-  strategy: Strategy,
-  selector: string,
-  maxWait?: number
-) {
+type StrategyExtraction = [ Extract<Strategy, ":has-text" | "class">, string ] | [ Extract<Strategy, "data-testid">, DataTestId ]
+
+export async function clickOnElement([window, strategy, selector, maxWait]:[Page, ...StrategyExtraction, number?]) {
   const builtSelector = `css=[${strategy}=${selector}]`;
   await window.waitForSelector(builtSelector, { timeout: maxWait });
   await window.click(builtSelector);
