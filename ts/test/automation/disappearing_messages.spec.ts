@@ -231,6 +231,7 @@ test('Disappear after send groups', async () => {
   await clickOnTestIdWithText(windowD, 'module-conversation__user__profile-name', group.userName);
   await clickOnElement([windowA,'data-testid','conversation-options-avatar']);
   await clickOnElement([windowA, 'data-testid', 'disappearing-messages']);
+  await clickOnElement([windowA, 'data-testid', 'disappearing-after-send-options']);
   const defaultTime = await waitForElement(windowA, 'data-testid', 'disappear-time-1-day-option');
   const checked = await defaultTime.isChecked();
   if(checked) {
@@ -261,6 +262,34 @@ test('Disappear after send groups', async () => {
 test('Disappear after send note to self', async () => {
   const [windowA] = await openApp(1);
   const userA = await newUser(windowA, 'Alice')
-  const [windowC] = await linkedDevice(userA.recoveryPhrase);
-  
+  const [windowB] = await linkedDevice(userA.recoveryPhrase);
+  const testMessage = 'Message to test note to self'
+  const testMessageDisappear = 'Message testing disappearing messages'
+  // Open Note to self conversation
+  await createContact(windowA, windowB, userA, userA);
+  // Check messages are syncing across linked devices
+  await sendMessage(windowA, testMessage);
+  await waitForTextMessage(windowB, testMessage);
+  // Enable disappearing messages
+  await clickOnElement([windowA,'data-testid','conversation-options-avatar']);
+  await clickOnElement([windowA, 'data-testid', 'disappearing-messages']);
+  await clickOnElement([windowA, 'data-testid', 'disappearing-after-send-options']);
+  // Check default time is correct
+  const defaultTime = await waitForElement(windowA, 'data-testid', 'disappear-time-1-day-option');
+  const checked = await defaultTime.isChecked();
+  if(checked) {
+    console.warn('Default time is correct')
+  } else{
+    throw new Error('Default timer is NOT set correctly')
+  };
+  await clickOnElement([windowA, 'data-testid', 'disappear-time-10-seconds-option']);
+  // Check control message is visible and correct
+  await waitForControlMessageWithText(windowA, testMessageDisappear);
+  await sendMessage(windowA, testMessage);
+  await waitForTextMessage(windowB, testMessage);
+  await sleepFor(10000);
+  await Promise.all([
+    hasTextElementBeenDeleted(windowA, testMessageDisappear),
+    hasTextElementBeenDeleted(windowB, testMessageDisappear),
+  ]);
 })

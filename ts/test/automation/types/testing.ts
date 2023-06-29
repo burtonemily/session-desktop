@@ -82,3 +82,10 @@ export type DataTestId =
 | "next-button" 
 | "link-device" 
 | "group-name-input"
+| "right-panel-group-name"
+| "header-conversation-name" 
+| "copy-button-profile-update"
+| 'loading-spinner' 
+| "your-profile-name" 
+| "your-session-id"
+| 'mentions-popup-row'

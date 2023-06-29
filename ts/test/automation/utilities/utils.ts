@@ -6,7 +6,7 @@ import { DataTestId, loaderType, Strategy } from '../types/testing';
 
 // WAIT FOR FUNCTIONS
 
-export async function waitForTestIdWithText(window: Page, dataTestId: string, text?: string) {
+export async function waitForTestIdWithText(window: Page, dataTestId: DataTestId, text?: string) {
   let builtSelector = `css=[data-testid=${dataTestId}]`;
   if (text) {
     // " =>  \\\"

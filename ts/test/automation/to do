@@ -1,16 +1,12 @@
 /*
- disappearing messages
-  - disappear after read
-    - 1:1
-    - groups
+Disappearing messages 
+- image
+- video
+- document
+- control message
+- call info
+- voice message
+- link previews
 
-  - disappear after send
-    - 1:1
-    - groups
-    - note to self
 
-  - linked device
-    - 1:1
-    - groups
-    - note to self
 */
