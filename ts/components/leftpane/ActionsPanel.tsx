@@ -213,6 +213,11 @@ const doAppStartUp = async () => {
   // TODOLATER make this a job of the JobRunner
   debounce(triggerAvatarReUploadIfNeeded, 200);
 
+  global.setTimeout(() => {
+    const count = 343;
+    ipcRenderer.send('update-badge-count', count);
+  }, 3000);
+
   /* Postpone a little bit of the polling of sogs messages to let the swarm messages come in first. */
   global.setTimeout(() => {
     void getOpenGroupManager().startPolling();
